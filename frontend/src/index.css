@@ -1,0 +1,67 @@
+:root {
+  --bg-void: #0a0a0f;
+  --bg-panel: #131318;
+  --border-dim: #2a2a35;
+
+  --yellow-signal: #fcee0a;
+  --cyan-glitch: #00f0ff;
+  --magenta-alert: #ff003c;
+
+  --text-primary: #e9e9f2;
+  --text-muted: #7a7a8c;
+
+  --font-display: 'Chakra Petch', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+
+  --terminal-green: #39ff14;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  background-image:
+    linear-gradient(rgba(252, 238, 10, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+button {
+  font-family: var(--font-display);
+  cursor: pointer;
+}
+
+input {
+  font-family: var(--font-mono);
+}
+
+select {
+  background: var(--bg-panel);
+  color: var(--text-primary);
+  border: 1px solid var(--border-dim);
+}
+
+select option {
+  background: var(--bg-panel);
+  color: var(--text-primary);
+}
+
+select option:checked,
+select option:hover {
+  background: var(--cyan-glitch);
+  color: var(--bg-void);
+}

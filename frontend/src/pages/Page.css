@@ -1,0 +1,50 @@
+.page {
+    padding: 3rem 5vw 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-dim);
+    padding-bottom: 1.5rem;
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    text-transform: uppercase;
+    color: var(--yellow-signal);
+    margin: 0.3rem 0 0.5rem;
+    letter-spacing: 0.02em;
+}
+
+.page-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+    max-width: 60ch;
+}
+
+.state-text {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.btn-danger-outline {
+    background: transparent;
+    border: 1px solid var(--border-dim);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    padding: 0.65rem 1.1rem;
+}
+
+.btn-danger-outline:hover,
+.btn-danger-outline:focus-visible {
+    border-color: var(--magenta-alert);
+    color: var(--magenta-alert);
+}

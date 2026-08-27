@@ -1,0 +1,134 @@
+.detail-panel {
+    background: var(--bg-panel);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    max-width: 780px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+}
+
+.detail-cover {
+    background: #0d0d13;
+    aspect-ratio: 2 / 3;
+}
+
+.detail-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.detail-body {
+    padding: 2rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--text-primary);
+    margin: 0.4rem 0 0.75rem;
+    line-height: 1.2;
+}
+
+.detail-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+
+.detail-rating {
+    color: var(--yellow-signal);
+    border-color: rgba(252, 238, 10, 0.4);
+}
+
+.detail-description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.detail-section-heading {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cyan-glitch);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+}
+
+.detail-availability {
+    margin-bottom: 1.75rem;
+}
+
+.state-text-inline {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.provider-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.provider-chip {
+    background: transparent;
+    border: 1px solid var(--border-dim);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+    text-decoration: none;
+}
+
+a.provider-chip:hover,
+a.provider-chip:focus-visible {
+    border-color: var(--cyan-glitch);
+    color: var(--cyan-glitch);
+}
+
+.provider-chip-static {
+    opacity: 0.6;
+}
+
+.detail-attribution {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+}
+
+.detail-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.detail-add-btn {
+    margin-top: 0;
+}
+
+.detail-close-btn {
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .detail-panel {
+        grid-template-columns: 1fr;
+        max-height: 92vh;
+    }
+
+    .detail-cover {
+        aspect-ratio: 16 / 9;
+    }
+}

@@ -1,0 +1,8 @@
+.home {
+    padding-bottom: 4rem;
+}
+
+.home-rows {
+    display: flex;
+    flex-direction: column;
+}

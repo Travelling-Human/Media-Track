@@ -1,0 +1,68 @@
+@baseUrl = http://127.0.0.1:8000
+
+### Register
+POST {{baseUrl}}/api/auth/register/
+Content-Type: application/json
+
+{
+    "username": "danny",
+    "email": "danny@example.com",
+    "password": "testpassword123"
+}
+
+### Login
+POST {{baseUrl}}/api/auth/login/
+Content-Type: application/json
+
+{
+    "username": "danny",
+    "password": "testpassword123"
+}
+
+### Create item — paste your access token below after logging in
+POST {{baseUrl}}/api/items/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3ODE0NzY5LCJpYXQiOjE3ODc4MTExNjksImp0aSI6IjcwNzk4MTkwY2YyNTQ2ZjU5MzczNDRhM2VjM2RlZWZlIiwidXNlcl9pZCI6IjZhNzg2ZWZiMzg1MzI1NWU2YmUyY2Q0YSJ9.uxFRyRPKw4aEnjQ61S_dbBinYnJRKzF4jjoTfWQOpLE
+
+{
+    "title": "The Song of ice and fire",
+    "media_type": "book",
+    "status": "ongoing",
+    "rating": 10
+}
+
+### List items
+GET {{baseUrl}}/api/items/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3ODE0NzY5LCJpYXQiOjE3ODc4MTExNjksImp0aSI6IjcwNzk4MTkwY2YyNTQ2ZjU5MzczNDRhM2VjM2RlZWZlIiwidXNlcl9pZCI6IjZhNzg2ZWZiMzg1MzI1NWU2YmUyY2Q0YSJ9.uxFRyRPKw4aEnjQ61S_dbBinYnJRKzF4jjoTfWQOpLE
+
+### Filter by status
+GET {{baseUrl}}/api/items/?status=ongoing
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3ODE0NzY5LCJpYXQiOjE3ODc4MTExNjksImp0aSI6IjcwNzk4MTkwY2YyNTQ2ZjU5MzczNDRhM2VjM2RlZWZlIiwidXNlcl9pZCI6IjZhNzg2ZWZiMzg1MzI1NWU2YmUyY2Q0YSJ9.uxFRyRPKw4aEnjQ61S_dbBinYnJRKzF4jjoTfWQOpLE
+
+### Confirm auth boundary (no token — should be 401)
+GET {{baseUrl}}/api/items/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3ODE0NzY5LCJpYXQiOjE3ODc4MTExNjksImp0aSI6IjcwNzk4MTkwY2YyNTQ2ZjU5MzczNDRhM2VjM2RlZWZlIiwidXNlcl9pZCI6IjZhNzg2ZWZiMzg1MzI1NWU2YmUyY2Q0YSJ9.uxFRyRPKw4aEnjQ61S_dbBinYnJRKzF4jjoTfWQOpLE
+
+### Export as JSON
+GET {{baseUrl}}/api/items/export/?format=json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3ODE0NzY5LCJpYXQiOjE3ODc4MTExNjksImp0aSI6IjcwNzk4MTkwY2YyNTQ2ZjU5MzczNDRhM2VjM2RlZWZlIiwidXNlcl9pZCI6IjZhNzg2ZWZiMzg1MzI1NWU2YmUyY2Q0YSJ9.uxFRyRPKw4aEnjQ61S_dbBinYnJRKzF4jjoTfWQOpLE
+
+### Export as TXT
+GET {{baseUrl}}/api/items/export/?format=txt
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3ODE0NzY5LCJpYXQiOjE3ODc4MTExNjksImp0aSI6IjcwNzk4MTkwY2YyNTQ2ZjU5MzczNDRhM2VjM2RlZWZlIiwidXNlcl9pZCI6IjZhNzg2ZWZiMzg1MzI1NWU2YmUyY2Q0YSJ9.uxFRyRPKw4aEnjQ61S_dbBinYnJRKzF4jjoTfWQOpLE
+
+### Export as JSON
+GET {{baseUrl}}/api/export/json/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3ODE0NzY5LCJpYXQiOjE3ODc4MTExNjksImp0aSI6IjcwNzk4MTkwY2YyNTQ2ZjU5MzczNDRhM2VjM2RlZWZlIiwidXNlcl9pZCI6IjZhNzg2ZWZiMzg1MzI1NWU2YmUyY2Q0YSJ9.uxFRyRPKw4aEnjQ61S_dbBinYnJRKzF4jjoTfWQOpLE
+
+### Export as TXT
+GET {{baseUrl}}/api/export/txt/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3ODE0NzY5LCJpYXQiOjE3ODc4MTExNjksImp0aSI6IjcwNzk4MTkwY2YyNTQ2ZjU5MzczNDRhM2VjM2RlZWZlIiwidXNlcl9pZCI6IjZhNzg2ZWZiMzg1MzI1NWU2YmUyY2Q0YSJ9.uxFRyRPKw4aEnjQ61S_dbBinYnJRKzF4jjoTfWQOpLE
+
+### Trending
+GET {{baseUrl}}/api/catalog/trending/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3ODE0NzY5LCJpYXQiOjE3ODc4MTExNjksImp0aSI6IjcwNzk4MTkwY2YyNTQ2ZjU5MzczNDRhM2VjM2RlZWZlIiwidXNlcl9pZCI6IjZhNzg2ZWZiMzg1MzI1NWU2YmUyY2Q0YSJ9.uxFRyRPKw4aEnjQ61S_dbBinYnJRKzF4jjoTfWQOpLE
+
+### Availability check
+GET {{baseUrl}}/api/catalog/availability/?media_type=movie&external_source=tmdb&external_id=27205
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3ODE0NzY5LCJpYXQiOjE3ODc4MTExNjksImp0aSI6IjcwNzk4MTkwY2YyNTQ2ZjU5MzczNDRhM2VjM2RlZWZlIiwidXNlcl9pZCI6IjZhNzg2ZWZiMzg1MzI1NWU2YmUyY2Q0YSJ9.uxFRyRPKw4aEnjQ61S_dbBinYnJRKzF4jjoTfWQOpLE

@@ -1,0 +1,120 @@
+.hero-carousel {
+    position: relative;
+    height: 60vh;
+    min-height: 420px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--bg-panel);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+.hero-scrim {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top, var(--bg-void) 5%, rgba(10, 10, 15, 0.75) 40%, rgba(10, 10, 15, 0.2) 75%),
+        linear-gradient(to right, rgba(10, 10, 15, 0.6) 0%, transparent 55%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 5vw 3.5rem;
+    max-width: 640px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--yellow-signal);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    color: var(--text-primary);
+    margin: 0 0 1rem;
+    text-shadow: 0 0 24px rgba(0, 0, 0, 0.6);
+    line-height: 1.1;
+}
+
+.hero-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-tag {
+    border: 1px solid rgba(233, 233, 242, 0.35);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+}
+
+.hero-description {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hero-add-btn {
+    margin-top: 0;
+    width: fit-content;
+}
+
+.hero-dots {
+    position: absolute;
+    z-index: 1;
+    bottom: 1.5rem;
+    right: 5vw;
+    display: flex;
+    gap: 0.4rem;
+}
+
+.hero-dot {
+    width: 22px;
+    height: 3px;
+    background: rgba(233, 233, 242, 0.25);
+    border: none;
+    padding: 0;
+}
+
+.hero-dot-active {
+    background: var(--cyan-glitch);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.hero-content {
+    cursor: pointer;
+}
+
+.hero-add-btn {
+    cursor: pointer;
+}
+
+@media (max-width: 640px) {
+    .hero-carousel {
+        height: 70vh;
+    }
+
+    .hero-content {
+        padding: 2rem 6vw 2.5rem;
+    }
+}
