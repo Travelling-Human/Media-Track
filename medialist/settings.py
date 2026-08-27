@@ -121,7 +121,11 @@ REST_FRAMEWORK = {
     ),
 }
 
-
+MIGRATION_MODULES = {
+    "admin": "mongo_migrations.admin",
+    "auth": "mongo_migrations.auth",
+    "contenttypes": "mongo_migrations.contenttypes",
+}
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
