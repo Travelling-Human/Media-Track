@@ -16,10 +16,12 @@ export default function Login() {
         setError('');
         setIsSubmitting(true);
         try {
-            await login(username, password);
+            await login(username.trim(), password);
             navigate('/');
-        } catch {
-            setError('ACCESS_DENIED — check your credentials and retry.');
+        } catch (err) {
+            console.error('Login failed:', err.response?.data || err.message);
+            const backendMessage = err.response?.data?.detail;
+            setError(backendMessage || 'ACCESS_DENIED — check your credentials and retry.');
         } finally {
             setIsSubmitting(false);
         }
@@ -46,6 +48,9 @@ export default function Login() {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         autoComplete="username"
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck="false"
                     />
 
                     <label className="auth-label" htmlFor="password">&gt; PASSWORD</label>

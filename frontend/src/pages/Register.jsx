@@ -17,10 +17,16 @@ export default function Register() {
         setError('');
         setIsSubmitting(true);
         try {
-            await register(username, email, password);
+            await register(username.trim(), email.trim(), password);
             navigate('/');
-        } catch {
-            setError('REGISTRATION_FAILED — username may already be taken.');
+        } catch (err) {
+            console.error('Registration failed:', err.response?.data || err.message);
+            const backendMessage = err.response?.data
+                ? Object.entries(err.response.data)
+                    .map(([field, msgs]) => `${field}: ${[].concat(msgs).join(' ')}`)
+                    .join(' — ')
+                : null;
+            setError(backendMessage || 'REGISTRATION_FAILED — network or server error, try again.');
         } finally {
             setIsSubmitting(false);
         }
@@ -47,6 +53,9 @@ export default function Register() {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         autoComplete="username"
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck="false"
                     />
 
                     <label className="auth-label" htmlFor="email">&gt; EMAIL</label>
@@ -57,6 +66,8 @@ export default function Register() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         autoComplete="email"
+                        autoCapitalize="none"
+                        spellCheck="false"
                     />
 
                     <label className="auth-label" htmlFor="password">&gt; PASSWORD</label>
