@@ -11,30 +11,48 @@ const NAV_ITEMS = [
 
 export default function Sidebar() {
     return (
-        <aside className="sidebar">
-            <div className="sidebar-logo" title="Logo placeholder">M</div>
+        <>
+            <aside className="sidebar">
+                <div className="sidebar-logo" title="Logo placeholder">M</div>
+                <nav className="sidebar-nav">
+                    {NAV_ITEMS.map(({ to, icon: Icon, label, end }) => (
+                        <NavLink
+                            key={to}
+                            to={to}
+                            end={end}
+                            className={({ isActive }) => `sidebar-link ${isActive ? 'sidebar-link-active' : ''}`}
+                            title={label}
+                        >
+                            <Icon size={20} strokeWidth={1.75} />
+                        </NavLink>
+                    ))}
+                </nav>
+                <NavLink
+                    to="/settings"
+                    className={({ isActive }) => `sidebar-link sidebar-settings ${isActive ? 'sidebar-link-active' : ''}`}
+                    title="Settings"
+                >
+                    <SettingsIcon size={20} strokeWidth={1.75} />
+                </NavLink>
+            </aside>
 
-            <nav className="sidebar-nav">
+            <header className="mobile-topbar">
+                <div className="sidebar-logo mobile-logo">M</div>
+                <span className="mobile-topbar-title">MEDIALIST_OS</span>
+            </header>
+
+            <nav className="mobile-tabbar">
                 {NAV_ITEMS.map(({ to, icon: Icon, label, end }) => (
-                    <NavLink
-                        key={to}
-                        to={to}
-                        end={end}
-                        className={({ isActive }) => `sidebar-link ${isActive ? 'sidebar-link-active' : ''}`}
-                        title={label}
-                    >
-                        <Icon size={20} strokeWidth={1.75} />
+                    <NavLink key={to} to={to} end={end} className={({ isActive }) => `mobile-tab ${isActive ? 'mobile-tab-active' : ''}`}>
+                        <Icon size={22} strokeWidth={1.75} />
+                        <span className="mobile-tab-label">{label}</span>
                     </NavLink>
                 ))}
+                <NavLink to="/settings" className={({ isActive }) => `mobile-tab ${isActive ? 'mobile-tab-active' : ''}`}>
+                    <SettingsIcon size={22} strokeWidth={1.75} />
+                    <span className="mobile-tab-label">Settings</span>
+                </NavLink>
             </nav>
-
-            <NavLink
-                to="/settings"
-                className={({ isActive }) => `sidebar-link sidebar-settings ${isActive ? 'sidebar-link-active' : ''}`}
-                title="Settings"
-            >
-                <SettingsIcon size={20} strokeWidth={1.75} />
-            </NavLink>
-        </aside>
+        </>
     );
 }

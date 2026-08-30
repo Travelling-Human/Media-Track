@@ -7,3 +7,10 @@
     flex: 1;
     min-width: 0;
 }
+
+@media (max-width: 768px) {
+    .app-main {
+        padding-top: 52px;
+        padding-bottom: 62px;
+    }
+}

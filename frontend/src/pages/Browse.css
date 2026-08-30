@@ -101,3 +101,20 @@
     font-family: var(--font-mono);
     padding: 0 0.25rem;
 }
+
+@media (max-width: 640px) {
+    .browse-search-form {
+        flex-direction: column;
+    }
+
+    .browse-search-form select,
+    .browse-search-form .browse-search-input,
+    .browse-search-form .auth-submit {
+        width: 100%;
+    }
+
+    .browse-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}

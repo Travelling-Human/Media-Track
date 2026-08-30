@@ -59,3 +59,82 @@
 .sidebar-settings {
     margin-top: auto;
 }
+
+.mobile-topbar,
+.mobile-tabbar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .mobile-topbar {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 52px;
+        padding: 0 1rem;
+        background: var(--bg-panel);
+        border-bottom: 1px solid var(--border-dim);
+        z-index: 30;
+    }
+
+    .mobile-logo {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+        margin-bottom: 0;
+    }
+
+    .mobile-topbar-title {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        color: var(--cyan-glitch);
+        letter-spacing: 0.1em;
+    }
+
+    .mobile-tabbar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 62px;
+        background: var(--bg-panel);
+        border-top: 1px solid var(--border-dim);
+        z-index: 30;
+        padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+
+    .mobile-tab {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.2rem;
+        color: var(--text-muted);
+        flex: 1;
+        padding: 0.35rem 0;
+    }
+
+    .mobile-tab-label {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.02em;
+    }
+
+    .mobile-tab-active {
+        color: var(--cyan-glitch);
+    }
+
+    .mobile-tab-active .mobile-tab-label {
+        text-shadow: 0 0 6px rgba(0, 240, 255, 0.5);
+    }
+}

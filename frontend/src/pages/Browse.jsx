@@ -1,12 +1,16 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MEDIA_TYPES } from '../constants/media';
 import { searchCatalog } from '../api/catalog';
+import { useAuth } from '../context/AuthContext';
 import AddItemModal from '../components/AddItemModal';
 import MediaDetailModal from '../components/MediaDetailModal';
 import './Page.css';
 import './Browse.css';
 
 export default function Browse() {
+    const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
     const [mediaType, setMediaType] = useState('movie');
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
@@ -45,6 +49,19 @@ export default function Browse() {
         if (targetPage < 1 || targetPage > totalPages || targetPage === page) return;
         runSearch(query, mediaType, targetPage);
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const requestAdd = (item) => {
+        if (!isAuthenticated) {
+            navigate('/login');
+            return;
+        }
+        setAddTarget(item);
+    };
+
+    const requestAddFromDetail = (item) => {
+        setDetailTarget(null);
+        requestAdd(item);
     };
 
     const pageWindow = [];
@@ -96,7 +113,7 @@ export default function Browse() {
                         </div>
                         <div className="browse-card-body">
                             <span className="browse-card-title">{r.title} {r.year ? `(${r.year})` : ''}</span>
-                            <button className="browse-add-btn" onClick={(e) => { e.stopPropagation(); setAddTarget(r); }}>+ ADD</button>
+                            <button className="browse-add-btn" onClick={(e) => { e.stopPropagation(); requestAdd(r); }}>+ ADD</button>
                         </div>
                     </div>
                 ))}
@@ -107,13 +124,7 @@ export default function Browse() {
                     <button className="page-nav-btn" onClick={() => goToPage(page - 1)} disabled={page === 1}>&lt; PREV</button>
                     {pageWindow[0] > 1 && <span className="page-ellipsis">...</span>}
                     {pageWindow.map((p) => (
-                        <button
-                            key={p}
-                            className={`page-number-btn ${p === page ? 'page-number-active' : ''}`}
-                            onClick={() => goToPage(p)}
-                        >
-                            {p}
-                        </button>
+                        <button key={p} className={`page-number-btn ${p === page ? 'page-number-active' : ''}`} onClick={() => goToPage(p)}>{p}</button>
                     ))}
                     {pageWindow[pageWindow.length - 1] < totalPages && <span className="page-ellipsis">...</span>}
                     <button className="page-nav-btn" onClick={() => goToPage(page + 1)} disabled={page === totalPages}>NEXT &gt;</button>
@@ -121,11 +132,7 @@ export default function Browse() {
             )}
 
             {detailTarget && (
-                <MediaDetailModal
-                    item={detailTarget}
-                    onAdd={(item) => { setDetailTarget(null); setAddTarget(item); }}
-                    onClose={() => setDetailTarget(null)}
-                />
+                <MediaDetailModal item={detailTarget} onAdd={requestAddFromDetail} onClose={() => setDetailTarget(null)} />
             )}
 
             {addTarget && (

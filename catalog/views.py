@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import requests
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from . import services
@@ -23,7 +23,7 @@ SUPPORTED_TYPES = {
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def search_catalog(request):
     media_type = request.query_params.get('media_type')
     query = request.query_params.get('q')
@@ -63,7 +63,7 @@ TRENDING_CACHE_TTL = 60 * 60  # 1 hour
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def trending_catalog(request):
     cached = cache.get(TRENDING_CACHE_KEY)
     if cached is not None:
@@ -97,7 +97,7 @@ def trending_catalog(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def catalog_availability(request):
     media_type = request.query_params.get('media_type')
     source = request.query_params.get('external_source')

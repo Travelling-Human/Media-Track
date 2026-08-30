@@ -15,10 +15,11 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      <Route element={<ProtectedRoute />}>
-        <Route element={<AppLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/browse" element={<Browse />} />
+      <Route element={<AppLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/browse" element={<Browse />} />
+
+        <Route element={<ProtectedRoute />}>
           <Route path="/library" element={<Library />} />
           <Route path="/history" element={<History />} />
           <Route path="/settings" element={<Settings />} />

@@ -334,3 +334,28 @@
     font-size: 0.7rem;
     color: var(--magenta-alert);
 }
+
+@media (max-width: 640px) {
+    .modal-search-form {
+        flex-direction: column;
+    }
+
+    .modal-search-form select,
+    .modal-search-form .auth-input,
+    .modal-scan-btn {
+        width: 100%;
+    }
+
+    .modal-backdrop {
+        padding: 1rem;
+    }
+
+    .modal-panel {
+        padding: 1.5rem;
+    }
+
+    .item-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}

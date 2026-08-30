@@ -518,6 +518,36 @@ def availability_tv(tmdb_id):
     return {"providers": providers, "note": None if providers else "Not currently listed as available in the US."}
 
 
+STORE_DOMAIN_NAMES = {
+    "steampowered.com": "Steam",
+    "epicgames.com": "Epic Games",
+    "gog.com": "GOG",
+    "playstation.com": "PlayStation Store",
+    "xbox.com": "Xbox Store",
+    "microsoft.com": "Microsoft Store",
+    "nintendo.com": "Nintendo eShop",
+    "apps.apple.com": "App Store",
+    "play.google.com": "Google Play",
+    "itch.io": "itch.io",
+    "ubisoft.com": "Ubisoft Store",
+    "ea.com": "EA App",
+    "battle.net": "Battle.net",
+}
+
+
+def _store_display_name(url, fallback_name):
+    """RAWG's stores endpoint doesn't always populate a usable store name, so this
+    falls back to reading it off the store's own URL, which RAWG always provides."""
+    if fallback_name:
+        return fallback_name
+    if not url:
+        return "Store"
+    for domain, name in STORE_DOMAIN_NAMES.items():
+        if domain in url:
+            return name
+    return "Store"
+
+
 def availability_game(rawg_id):
     response = _session.get(
         f"{RAWG_BASE_URL}/games/{rawg_id}/stores",
@@ -527,7 +557,7 @@ def availability_game(rawg_id):
     response.raise_for_status()
     results = response.json().get("results", [])
     providers = [
-        {"name": s.get("store", {}).get("name", "Store"), "link": s.get("url")}
+        {"name": _store_display_name(s.get("url"), s.get("store", {}).get("name")), "link": s.get("url")}
         for s in results if s.get("url")
     ]
     return {"providers": providers, "note": None if providers else "No storefront links found."}
